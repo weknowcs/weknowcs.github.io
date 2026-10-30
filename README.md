@@ -1,4 +1,4 @@
-# weknowcs.github.io
+# weknowcs
 we know computer science!
 
 2026
