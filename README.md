@@ -1,4 +1,525 @@
-# weknowcs
-we know computer science!
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f1e9">
+  <meta name="description" content="WeKnowCS: We know computer science. We build apps. We know AI well.">
+  <link rel="canonical" href="https://www.weknowcs.com/">
+  <title>WeKnowCS / Small characters. Big possibilities.</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f3f1e9;
+      --ink: #20352c;
+      --muted: #647168;
+      --rule: #d3d7cc;
+      --orange: #b74625;
+      --terminal: #192d24;
+      --terminal-rule: #3b4e43;
+      --mint: #b9dca0;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
 
-2026
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { color: var(--paper); background: var(--orange); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 6px;
+    }
+    .page { width: min(1280px, calc(100% - 96px)); margin: 0 auto; }
+    .skip-link {
+      position: absolute;
+      top: -80px;
+      left: 24px;
+      padding: 12px;
+      background: var(--paper);
+      z-index: 2;
+    }
+    .skip-link:focus { top: 16px; }
+    .site-header {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+    .brand-mark { color: var(--orange); font-size: 25px; letter-spacing: -3px; }
+    .header-note { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; }
+    .header-link { font-size: 12px; white-space: nowrap; }
+    .header-link span { color: var(--orange); }
+    .header-link:hover { color: var(--orange); }
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 290px;
+      align-items: end;
+      gap: 40px;
+      padding: 68px 0 48px;
+    }
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.7px;
+      line-height: 1.6;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 4.65vw, 66px);
+      font-weight: 500;
+      letter-spacing: -3.8px;
+      line-height: 1.12;
+    }
+    h1 span { color: var(--orange); }
+    .intro-note { padding-bottom: 3px; }
+    .intro-note .asterisk { color: var(--orange); font-size: 28px; }
+    .intro-note p { margin: 12px 0 0; font-size: 12px; line-height: 1.9; color: var(--muted); }
+    .workbench {
+      overflow: hidden;
+      background: var(--terminal);
+      color: var(--paper);
+      border: 1px solid var(--terminal);
+      border-radius: 9px;
+      box-shadow: 0 7px 0 #20352c0a;
+    }
+    .window-bar {
+      min-height: 48px;
+      padding: 14px 23px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid var(--terminal-rule);
+      font-size: 10px;
+      color: #b4c1b6;
+    }
+    .window-name { display: flex; align-items: center; gap: 22px; }
+    .window-dots { color: var(--mint); letter-spacing: 3px; white-space: nowrap; }
+    .encoding { font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+    .capabilities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .capability {
+      min-width: 0;
+      padding: 26px 28px 30px;
+      border-right: 1px solid var(--terminal-rule);
+      transition: background 250ms ease;
+    }
+    .capability:last-child { border-right: 0; }
+    .card-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      color: #b4c1b6;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+    }
+    .phase-marker { color: #8ca48e; letter-spacing: 0; white-space: nowrap; }
+    .art {
+      min-height: 300px;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8eac8e;
+    }
+    .art pre {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: clamp(9px, .92vw, 12px);
+      line-height: 1.4;
+      font-weight: 400;
+      font-variant-ligatures: none;
+      letter-spacing: 0;
+      white-space: pre;
+      user-select: none;
+    }
+    .lit { color: #d2eeb8; }
+    .warm { color: #efb28e; }
+    .copy h2 {
+      margin: 0 0 15px;
+      font-size: clamp(21px, 2vw, 27px);
+      line-height: 1.25;
+      font-weight: 400;
+      letter-spacing: -1px;
+    }
+    .copy p {
+      min-height: 60px;
+      margin: 0;
+      color: #b4c1b6;
+      font-size: 11px;
+      line-height: 1.85;
+      max-width: 32ch;
+    }
+    .tags {
+      margin-top: 25px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--terminal-rule);
+      font-size: 9px;
+      line-height: 1.7;
+      color: var(--mint);
+    }
+    .capability.is-active { background: #243d2f; }
+    .capability.is-active .art { color: #c1eaa8; }
+    .capability.is-active .phase-marker { color: #efb28e; }
+    .capability.is-done .phase-marker { color: var(--mint); }
+    .console {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 21px 26px;
+      border-top: 1px solid var(--terminal-rule);
+      background: #15271f;
+    }
+    .console-output { min-width: 0; }
+    .command { margin: 0 0 8px; font-size: 11px; color: #e2e8d8; }
+    .prompt { color: var(--mint); }
+    .cursor { color: var(--mint); animation: blink 1.2s steps(1) infinite; }
+    .console-status {
+      min-height: 16px;
+      margin: 0;
+      color: #a7b6a8;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .run-button {
+      flex-shrink: 0;
+      border: 1px solid var(--mint);
+      border-radius: 3px;
+      padding: 12px 18px;
+      background: var(--mint);
+      color: #192d24;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+    .run-button:hover:not(:disabled) { background: #d0edba; transform: translateY(-2px); }
+    .run-button:active:not(:disabled) { transform: translateY(0); }
+    .run-button:disabled { cursor: wait; background: transparent; color: var(--mint); }
+    .run-button:focus-visible { outline-color: var(--mint); }
+    .bench-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 15px 2px 0;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.7;
+    }
+    .closing {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      padding: 47px 0 39px;
+    }
+    .closing p { margin: 0; font-size: 15px; letter-spacing: -.5px; line-height: 1.8; }
+    .closing p span { color: var(--muted); }
+    .equation {
+      color: var(--orange);
+      font-size: 11px;
+      white-space: nowrap;
+      padding: 12px 16px;
+      border: 1px dashed #bbbaa9;
+    }
+    .site-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0 28px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .5px;
+      line-height: 1.7;
+    }
+    .footer-contact { margin: 0; font-size: 11px; font-style: normal; letter-spacing: 0; }
+    .footer-contact a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    .site-footer a:hover { color: var(--orange); }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    @media (min-width: 1500px) {
+      .intro { padding-top: 80px; padding-bottom: 60px; }
+    }
+    @media (max-width: 1100px) {
+      .page { width: calc(100% - 64px); }
+      .intro { grid-template-columns: 1fr 240px; gap: 24px; }
+      h1 { letter-spacing: -2.7px; }
+      .capability { padding-left: 20px; padding-right: 20px; }
+    }
+    @media (max-width: 900px) {
+      .header-note { display: none; }
+      .intro { grid-template-columns: 1fr; gap: 20px; padding: 48px 0 34px; }
+      h1 { font-size: clamp(36px, 7vw, 60px); }
+      .intro-note { max-width: 56ch; }
+      .intro-note .asterisk { display: none; }
+      .intro-note p { margin: 0; }
+      .capabilities { grid-template-columns: 1fr; }
+      .capability {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 28px;
+        padding: 24px 28px;
+        border-right: 0;
+        border-bottom: 1px solid var(--terminal-rule);
+      }
+      .capability:last-child { border-bottom: 0; }
+      .card-label { grid-column: 1 / -1; }
+      .art pre { font-size: clamp(9px, 1.6vw, 12px); }
+      .copy { align-self: center; padding-top: 16px; }
+      .copy h2 { font-size: 25px; }
+      .copy p { min-height: 0; }
+      .tags { margin-top: 19px; }
+      .closing { align-items: flex-start; }
+      .equation { font-size: 9px; }
+    }
+    @media (max-width: 560px) {
+      .page { width: calc(100% - 36px); }
+      .site-header { min-height: 80px; gap: 12px; }
+      .wordmark { font-size: 16px; gap: 9px; }
+      .brand-mark { font-size: 22px; }
+      .header-link { font-size: 10px; }
+      .intro { padding-top: 39px; gap: 20px; }
+      .eyebrow { font-size: 8px; letter-spacing: 1.2px; margin-bottom: 18px; }
+      h1 { font-size: clamp(27px, 7.6vw, 42px); letter-spacing: -1.7px; }
+      .intro-note p { font-size: 11px; max-width: 39ch; }
+      .window-bar { padding: 13px 16px; font-size: 9px; }
+      .window-name { gap: 12px; }
+      .window-dots { letter-spacing: 0; }
+      .encoding { font-size: 8px; }
+      .capability { display: block; padding: 23px 24px 28px; }
+      .art { min-height: 260px; }
+      .art pre { font-size: clamp(9px, 2.7vw, 12px); }
+      .copy { padding-top: 0; }
+      .copy h2 { font-size: clamp(22px, 6.4vw, 26px); }
+      .copy h2 br { display: none; }
+      .copy p { max-width: 36ch; }
+      .console { align-items: stretch; flex-direction: column; padding: 22px 24px; gap: 18px; }
+      .console-status { min-height: 32px; }
+      .run-button { align-self: flex-start; }
+      .bench-caption { font-size: 8px; gap: 12px; }
+      .bench-caption span:last-child { text-align: right; }
+      .closing { flex-direction: column; gap: 19px; padding: 34px 0; }
+      .closing p { font-size: 13px; }
+      .equation { max-width: 100%; white-space: normal; line-height: 1.8; }
+      .site-footer { flex-direction: column; align-items: flex-start; gap: 12px; font-size: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page">
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="WeKnowCS home">
+        <span class="brand-mark" aria-hidden="true">[w]</span>
+        weknowcs<span aria-hidden="true">_</span>
+      </a>
+      <span class="header-note">AN INDEPENDENT DIGITAL STUDIO</span>
+      <a class="header-link" href="#workbench">Meet the stack <span aria-hidden="true">[v]</span></a>
+    </header>
+
+    <main id="main">
+      <section class="intro" aria-labelledby="headline">
+        <div>
+          <p class="eyebrow">// GOOD THINGS START WITH A LITTLE LOGIC.</p>
+          <h1 id="headline">Small characters.<br><span>Big possibilities.</span></h1>
+        </div>
+        <div class="intro-note">
+          <span class="asterisk" aria-hidden="true">(*)</span>
+          <p>Deep technical roots. A maker's mindset.<br>We turn complex problems into things<br class="desktop-break"> that just make sense.</p>
+        </div>
+      </section>
+
+      <section id="workbench" class="workbench" aria-label="Our three capabilities, illustrated in ASCII">
+        <div class="window-bar">
+          <div class="window-name">
+            <span class="window-dots" aria-hidden="true">o o o</span>
+            <span>~/studio/capabilities.txt</span>
+          </div>
+          <span class="encoding">100% ASCII</span>
+        </div>
+
+        <div class="capabilities">
+          <article class="capability" data-stage="0">
+            <div class="card-label">
+              <span>01 / THE FOUNDATION</span>
+              <span class="phase-marker" aria-hidden="true">[ready]</span>
+            </div>
+            <div class="art" role="img" aria-label="An ASCII processor with a code core, binary inputs, and a branching data structure.">
+              <pre aria-hidden="true">          <span class="warm">0110  0010  1010</span>
+               | | |
+         .-----+-+-+-----.
+     ----|               |----
+     ----|   <span class="lit">.-------.</span>   |----
+     ----|   <span class="lit">| { / } |</span>   |----
+     ----|   <span class="lit">'-------'</span>   |----
+     ----|    <span class="lit">C O R E</span>    |----
+         '-----+-+-+-----'
+               | | |
+          .----' | '----.
+          |      |      |
+        <span class="lit">[01]   [10]   [11]</span>
+          \      |      /
+           '-----+-----'
+               <span class="warm">[ok]</span></pre>
+            </div>
+            <div class="copy">
+              <h2>We know<br> computer science.</h2>
+              <p>Not just the frameworks. The fundamentals. We understand what makes the whole thing work.</p>
+              <div class="tags">algorithms / systems / architecture</div>
+            </div>
+          </article>
+
+          <article class="capability" data-stage="1">
+            <div class="card-label">
+              <span>02 / THE CRAFT</span>
+              <span class="phase-marker" aria-hidden="true">[ready]</span>
+            </div>
+            <div class="art" role="img" aria-label="An ASCII laptop and mobile phone displaying a working app, from the desktop to your pocket.">
+              <pre aria-hidden="true">   .------------------------.
+   | .--------------------. |
+   | | <span class="warm">&gt; hello, world_</span>    | |
+   | |                    | |
+   | |  <span class="lit">[ + ]  [ + ]</span>      | |
+   | |                    | |
+   | |  -------  <span class="lit">.----------.</span>
+   | |  -------  <span class="lit">| .------. |</span>
+   | '-----------<span class="lit">| | <span class="warm">9:41</span> | |</span>
+   '-------------<span class="lit">| |      | |</span>
+  /______________<span class="lit">| | [++] | |</span>
+ '---------------<span class="lit">| |      | |</span>
+                 <span class="lit">| | ==== | |</span>
+                 <span class="lit">| '------' |</span>
+                 <span class="lit">'----------'</span>
+      <span class="warm">build. ship. repeat.</span></pre>
+            </div>
+            <div class="copy">
+              <h2>We build<br> apps.</h2>
+              <p>From a rough idea to your everyday essential. Thoughtfully designed. Built to hold up.</p>
+              <div class="tags">web / mobile / delightful details</div>
+            </div>
+          </article>
+
+          <article class="capability" data-stage="2">
+            <div class="card-label">
+              <span>03 / THE INTELLIGENCE</span>
+              <span class="phase-marker" aria-hidden="true">[ready]</span>
+            </div>
+            <div class="art" role="img" aria-label="An ASCII brain made of connected neurons, representing a deep understanding of artificial intelligence.">
+              <pre aria-hidden="true">        .-"""-.   .-"""-.
+      .'  <span class="lit">o--.</span> '-' <span class="lit">.--o</span>  '.
+     /  / |   \   /   | \  \
+    ;  <span class="lit">o--o----o-o----o--o</span>  ;
+    |   \ |   / | \   | /   |
+    |    <span class="lit">o---o--+--o---o</span>    |
+    ;   / \   \ | /   / \   ;
+     \ <span class="lit">o---o---o-o---o---o</span> /
+      '.    \   |   /    .'
+        '-.  \  |  /  .-'
+           '--\-+-/--'
+                |
+          .-----+-----.
+          | <span class="warm">less hype.</span>|
+          | <span class="warm">more know.</span>|
+          '-----------'</pre>
+            </div>
+            <div class="copy">
+              <h2>We know<br> AI well.</h2>
+              <p>Beyond the buzzwords. We put models, data, and agents to work on problems worth solving.</p>
+              <div class="tags">models / agents / applied intelligence</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="console">
+          <div class="console-output">
+            <p class="command"><span class="prompt">$</span> make something-great <span class="cursor" aria-hidden="true">_</span></p>
+            <p id="demo-status" class="console-status" role="status">Three disciplines. One very good place to start.</p>
+          </div>
+          <button id="run-demo" class="run-button" type="button" aria-controls="demo-status" hidden>Run the demo -&gt;</button>
+        </div>
+      </section>
+
+      <div class="bench-caption">
+        <span>FIG. 001 / A LOOK INSIDE OUR HEADS</span>
+        <span>Plain text. Real possibility.</span>
+      </div>
+
+      <section class="closing" aria-label="Our approach">
+        <p>Close to the machine. <span>Closer to the human.</span><br>That's where the good stuff happens.</p>
+        <div class="equation" aria-label="Logic plus craft plus intelligence equals possibility">[ logic + craft + intelligence ] -&gt; possibility</div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <a href="https://www.weknowcs.com/">www.weknowcs.com</a>
+      <address class="footer-contact">Contact: <a href="mailto:yongkangliu@gmail.com">yongkangliu@gmail.com</a></address>
+      <a href="#top">BACK TO TOP [^]</a>
+    </footer>
+  </div>
+  <script>
+    const button = document.querySelector("#run-demo");
+    const status = document.querySelector("#demo-status");
+    const cards = [...document.querySelectorAll(".capability")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const stages = [
+      "[1/3] Starting with solid computer science...",
+      "[2/3] Turning the idea into a working app...",
+      "[3/3] Adding intelligence with a purpose..."
+    ];
+    const delay = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+    button.hidden = false;
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      button.textContent = "Sequence running...";
+      for (const card of cards) {
+        card.classList.remove("is-active", "is-done");
+        card.querySelector(".phase-marker").textContent = "[wait]";
+      }
+
+      for (const [index, card] of cards.entries()) {
+        card.classList.add("is-active");
+        card.querySelector(".phase-marker").textContent = "[work]";
+        status.textContent = stages[index];
+        if (!reducedMotion.matches) await delay(850);
+        card.classList.remove("is-active");
+        card.classList.add("is-done");
+        card.querySelector(".phase-marker").textContent = "[done]";
+      }
+
+      status.textContent = "[ok] Logic + craft + intelligence. That's how we build.";
+      button.textContent = "Run it again ->";
+      button.disabled = false;
+    });
+  </script>
+</body>
+</html>
